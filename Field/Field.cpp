@@ -141,7 +141,7 @@ void Field::CreateEntranceAndExit(){
 
     int x_for_exit = rand() % width;
     int y_for_exit = rand() % height;
-    while(Tiles[x_for_exit][y_for_exit]->getType() == WATER || check_around<Entrance>(x_for_exit, y_for_exit))
+    while(Tiles[x_for_exit][y_for_exit]->getType() == WATER || CheckAround<Entrance>(x_for_exit, y_for_exit))
     {
         x_for_exit = rand() % width;
         y_for_exit = rand() % height;

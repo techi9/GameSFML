@@ -12,7 +12,7 @@ class Field {
     void DeleteTiles();
 
 template <typename T>
-    bool check_around(int x, int y){
+    bool CheckAround(int x, int y){
         if(x==width-1)
             x--;
         else if(x==0)
@@ -41,7 +41,6 @@ public:
     ~Field();
     Tile*** Tiles;
     int width, height;
-
 
 };
 

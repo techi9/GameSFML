@@ -1,15 +1,13 @@
 #pragma once
 #include "../GameObj.h"
 class Entrance : public GameObj {
-
-    string Render();
 public:
     Entrance();
+    string Render();
 };
 
 class Exit : public GameObj {
-
-    string Render();
 public:
     Exit();
+    string Render();
 };
