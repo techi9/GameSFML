@@ -1,5 +1,14 @@
-//
-// Created by tucha on 06.10.2021.
-//
-
 #include "Tile.h"
+
+void Tile::SetType(enum type type){
+    this->type = type;
+};
+enum type Tile::getType(){
+    return type;
+};
+
+
+
+Tile::Tile(enum type type){
+    this->type = type;
+};
