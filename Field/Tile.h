@@ -3,9 +3,9 @@
 
 enum type{TERRAIN, WATER};
 class Tile {
-    GameObj content;
     type type;
 public:
+    GameObj* content;
     void SetType(enum type type);
     enum type getType();
     Tile(enum type type);

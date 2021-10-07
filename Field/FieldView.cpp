@@ -10,7 +10,10 @@ void FieldView::DrawField(){
     {
         for(int j = 0; j < field->height; j++)
         {
-            std::cout << ((field->Tiles[i][j]->getType() == TERRAIN) ? "# " : "~ ");
+            if (field->Tiles[i][j]->content)
+                std::cout << field->Tiles[i][j]->content->Render();
+            else
+                std::cout << ((field->Tiles[i][j]->getType() == TERRAIN) ? "# " : "~ ");
         }
         std::cout<<std::endl;
     }
