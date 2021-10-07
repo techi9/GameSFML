@@ -130,8 +130,8 @@ void Field::CreatePuddle(int min_size, int max_size){
 
 void Field::CreateEntranceAndExit(){
     //create entrance tile
-    int x_for_entrance = (rand() % width - 1) + 2;
-    int y_for_entrance = (rand() % height - 1) + 2;
+    int x_for_entrance = rand() % width ;
+    int y_for_entrance = rand() % height;
     while(Tiles[x_for_entrance][y_for_entrance]->getType() == WATER )
     {
         x_for_entrance = rand() % width;
@@ -139,9 +139,9 @@ void Field::CreateEntranceAndExit(){
     }
     Tiles[x_for_entrance][y_for_entrance]->content = new Entrance();
 
-    int x_for_exit = (rand() % width-1) + 2;
-    int y_for_exit = (rand() % height-1) + 2;
-    while(Tiles[x_for_exit][y_for_exit]->getType() == WATER || check_around(x_for_exit, y_for_exit, Entrance()))
+    int x_for_exit = rand() % width;
+    int y_for_exit = rand() % height;
+    while(Tiles[x_for_exit][y_for_exit]->getType() == WATER || check_around<Entrance>(x_for_exit, y_for_exit))
     {
         x_for_exit = rand() % width;
         y_for_exit = rand() % height;

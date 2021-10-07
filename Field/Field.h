@@ -12,7 +12,7 @@ class Field {
     void DeleteTiles();
 
 template <typename T>
-    bool check_around(int x, int y, T t){
+    bool check_around(int x, int y){
         if(x==width-1)
             x--;
         else if(x==0)

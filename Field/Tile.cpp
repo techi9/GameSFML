@@ -11,4 +11,8 @@ enum type Tile::getType(){
 
 Tile::Tile(enum type type){
     this->type = type;
+    if (type == WATER)
+        walkable = false;
+    else if (type == TERRAIN)
+        walkable = true;
 };

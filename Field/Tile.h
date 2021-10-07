@@ -9,4 +9,5 @@ public:
     void SetType(enum type type);
     enum type getType();
     Tile(enum type type);
+    bool walkable;
 };
