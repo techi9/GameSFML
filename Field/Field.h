@@ -2,6 +2,7 @@
 #include "Tile.h"
 #include "string"
 #include "memory"
+#include "FieldView.h"
 using namespace std;
 
 class Field {
@@ -10,6 +11,7 @@ class Field {
     void CreateTiles(int w, int  h);
     void CreateTiles();
     void DeleteTiles();
+    friend class FieldView;
 
 template <typename T>
     bool CheckAround(int x, int y){
@@ -32,6 +34,8 @@ template <typename T>
          dynamic_cast<T*>(Tiles[x+1][y-1]->content);
     };
 
+    Tile*** Tiles;
+    int width, height;
 public:
     Field(int w, int h);
     Field(Field& other);
@@ -39,8 +43,8 @@ public:
     Field& operator=(Field& other);
     Field& operator=(Field&& other);
     ~Field();
-    Tile*** Tiles;
-    int width, height;
+
+
 
 };
 

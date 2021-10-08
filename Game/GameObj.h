@@ -5,4 +5,3 @@ class GameObj{ //TODO: add functions to draw it
 public:
     virtual string Render() = 0;
 };
-

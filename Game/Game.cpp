@@ -1,6 +1,7 @@
 
 #include "Game.h"
 #include "../Field/FieldView.h"
+#include "../Field/Field.h"
 #include <stdlib.h>
 #include <time.h>
 

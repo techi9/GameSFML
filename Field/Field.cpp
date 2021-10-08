@@ -80,6 +80,7 @@ Field& Field::operator=(Field&& other){
         swap(height, other.height);
         swap(Tiles, other.Tiles);
     }
+    return *this;
 }
 
 Field& Field::operator=(Field& other){
