@@ -1,46 +1,51 @@
 #pragma once
+
 #include "Tile.h"
 #include "string"
 #include "memory"
+#include "FieldView.h"
+
 using namespace std;
 
 class Field {
     void CreatePuddle(int min_size, int max_size);
+
     void CreateEntranceAndExit();
-    void CreateTiles(int w, int  h);
+
+    void CreateTiles(int w, int h);
+
     void CreateTiles();
+
     void DeleteTiles();
 
-template <typename T>
-    bool CheckAround(int x, int y){
-        if(x==width-1)
-            x--;
-        else if(x==0)
-            x++;
-        if(y==height-1)
-            y--;
-        else if(y==0)
-            y++;
-    return dynamic_cast<T*>(Tiles[x][y]->content) ||
-         dynamic_cast<T*>(Tiles[x+1][y]->content) ||
-         dynamic_cast<T*>(Tiles[x-1][y]->content) ||
-         dynamic_cast<T*>(Tiles[x][y+1]->content) ||
-         dynamic_cast<T*>(Tiles[x][y-1]->content) ||
-         dynamic_cast<T*>(Tiles[x+1][y+1]->content) ||
-         dynamic_cast<T*>(Tiles[x-1][y+1]->content) ||
-         dynamic_cast<T*>(Tiles[x-1][y-1]->content) ||
-         dynamic_cast<T*>(Tiles[x+1][y-1]->content);
+    friend class FieldView;
+
+    template<typename T>
+    bool CheckAround(int x, int y, int r = 1) {
+        for (int i = -r; i < r + 1; i++) {
+            for (int j = -r; j < r + 1; j++) {
+                if (!(x + i < 0 || y + j < 0 || x + i >= width || y + j >= height)) //check x y
+                    if (dynamic_cast<T *>(Tiles[x + i][y + j]->content))
+                        return true;
+            }
+        }
+        return false;
     };
 
+    Tile ***Tiles;
+    int width, height;
 public:
     Field(int w, int h);
-    Field(Field& other);
-    Field(Field&& other);
-    Field& operator=(Field& other);
-    Field& operator=(Field&& other);
+    bool Init();
+    Field(Field &other);
+
+    Field(Field &&other) noexcept;
+
+    Field &operator=(Field &other);
+
+    Field &operator=(Field &&other) noexcept;
+
     ~Field();
-    Tile*** Tiles;
-    int width, height;
 
 };
 
