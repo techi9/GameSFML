@@ -53,9 +53,11 @@ Field::Field(Field &other) {
         Tiles[i] = new Tile *[other.width];
     }
 
-    for (int i = 0; i < other.width; i++) {
-        for (int j = 0; j < other.height; j++) {
-            Tiles[i][j] = new Tile(other.Tiles[i][j]->getType());
+    for(int i = 0; i < other.width; i++)
+    {
+        for(int j = 0; j < other.height; j++)
+        {
+            Tiles[i][j] = new Tile(other.Tiles[i][j]->GetType());
             *Tiles[i][j]->content = *other.Tiles[i][j]->content;
         }
     }
@@ -88,9 +90,11 @@ Field &Field::operator=(Field &other) {
             Tiles[i] = new Tile *[other.width];
         }
 
-        for (int i = 0; i < other.width; i++) {
-            for (int j = 0; j < other.height; j++) {
-                Tiles[i][j] = new Tile(other.Tiles[i][j]->getType());
+        for(int i = 0; i < other.width; i++)
+        {
+            for(int j = 0; j < other.height; j++)
+            {
+                Tiles[i][j] = new Tile(other.Tiles[i][j]->GetType());
                 *Tiles[i][j]->content = *other.Tiles[i][j]->content;
             }
         }
@@ -118,7 +122,8 @@ void Field::CreateEntranceAndExit() {
     //create entrance tile
     int x_for_entrance = rand() % width;
     int y_for_entrance = rand() % height;
-    while (Tiles[x_for_entrance][y_for_entrance]->getType() == WATER) {
+    while(Tiles[x_for_entrance][y_for_entrance]->GetType() == WATER )
+    {
         x_for_entrance = rand() % width;
         y_for_entrance = rand() % height;
     }
@@ -126,7 +131,8 @@ void Field::CreateEntranceAndExit() {
 
     int x_for_exit = rand() % width;
     int y_for_exit = rand() % height;
-    while (Tiles[x_for_exit][y_for_exit]->getType() == WATER || CheckAround<Entrance>(x_for_exit, y_for_exit)) {
+    while(Tiles[x_for_exit][y_for_exit]->GetType() == WATER || CheckAround<Entrance>(x_for_exit, y_for_exit))
+    {
         x_for_exit = rand() % width;
         y_for_exit = rand() % height;
     }
