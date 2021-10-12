@@ -3,7 +3,7 @@
 
 int main()
 {
-    Game game(8, 15);
+    Game game(50, 15);
 
     return 0;
 }

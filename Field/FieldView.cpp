@@ -20,9 +20,9 @@ bool FieldView::LoadTextures(string path_to_folder)
 }
 
 void FieldView::DrawField(){
-    for(int i = 0; i < field->width; i++)
+    for(int j = 0; j < field->height; j++)
     {
-        for(int j = 0; j < field->height; j++)
+        for(int i = 0; i < field->width; i++)
         {
             if (field->Tiles[i][j]->content)
                 std::cout << field->Tiles[i][j]->content->Render();
@@ -41,13 +41,13 @@ void FieldView::draw(sf::RenderTarget& target, sf::RenderStates states) const
         {
             try {
                 sf::Sprite sprite;
-                sprite.setTexture(textures.at(field->Tiles[i][j]->GetType()), false);
-                sprite.move(i*sprite.getLocalBounds().width, j*sprite.getLocalBounds().height);
+                sprite.setTexture(textures.at(field->Tiles[j][i]->GetType()), false);
+                sprite.move(j*sprite.getLocalBounds().width, i*sprite.getLocalBounds().height);
                 target.draw(sprite);
             }
             catch(std::exception)
             {
-                std::cerr << "Texture for " << field->Tiles[i][j]->GetType() << " not found." << std::endl;
+                std::cerr << "Texture for " << field->Tiles[j][i]->GetType() << " not found." << std::endl;
             }
         }
     }

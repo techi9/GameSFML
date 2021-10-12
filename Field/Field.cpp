@@ -13,8 +13,6 @@ using namespace std;
 Field::Field(int w, int h) {
     width = w;
     height = h;
-
-
 }
 
 void Field::CreateTiles(int w, int h) {
@@ -111,8 +109,10 @@ void Field::CreatePuddle(int min_size, int max_size) {
         for (int j = -puddle_radius; j <= puddle_radius; j++) {
             if (i * i + j * j <= puddle_radius * puddle_radius) {
                 if ((x_for_puddle + i < width) && (x_for_puddle + i >= 0) &&
-                    (y_for_puddle + j < width) && (y_for_puddle + j >= 0))
-                        Tiles[x_for_puddle + i][y_for_puddle + j]->SetType(WATER); //TODO: this causes issues sometimes j and i mixed
+                    (y_for_puddle + j < height) && (y_for_puddle + j >= 0))
+                        Tiles[x_for_puddle + i][y_for_puddle + j]->SetType(WATER);
+
+                // TODO: this causes issues sometimes j and i mixed
             }
         }
     }

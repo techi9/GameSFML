@@ -3,7 +3,6 @@
 #include "Tile.h"
 #include "string"
 #include "memory"
-#include "FieldView.h"
 
 using namespace std;
 
