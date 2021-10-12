@@ -1,5 +1,6 @@
 #pragma once
 #include "../Game/GameObj.h"
+#include "FieldView.h"
 
 
 class Tile {
@@ -11,5 +12,7 @@ public:
     Tile(enum type type);
     bool walkable;
 private:
+    friend class FieldView;
     type type;
+    //friend class FieldView;
 };

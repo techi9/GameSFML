@@ -1,22 +1,43 @@
 #include "FieldView.h"
 #include "iostream"
 #include <SFML/Graphics.hpp>
+#include <utility>
 
-FieldView::FieldView(Field* field, string path_to_tilemap){
+FieldView::FieldView(Field* field, string pathToTilemap){
     this->field = field;
-    LoadTextures(path_to_tilemap);
+    this->pathToTilemap = std::move(pathToTilemap);
+    InitTextures();
 }
 
-bool FieldView::LoadTextures(string path_to_folder)
-{
-    sf::Texture *texture;
-    texture->loadFromFile(path_to_folder+"\\"+"grass_c.png");
-    std::map<BorderCadification, sf::Texture*> PairsOfTerrain;
-    PairsOfTerrain.emplace(FieldView::C, texture);
-    textures.emplace(Tile::TERRAIN,  PairsOfTerrain);
+map<string, sf::Texture *> FieldView::LoadTextures(const string& TextureFileName, bool versatile) { //TODO:requires destructor
+    map<string, sf::Texture *> m;
+    sf::Texture *texture[9];
+    if(versatile)
+    {
+        for(int i = 0; i<9;i++) {
+            texture[i] = new sf::Texture;
+            texture[i]->loadFromFile(pathToTilemap + "\\" + TextureFileName + "_" + BorderCadification[i]);
+            m.emplace(BorderCadification[i], texture[i]);
+        }
 
-    (*texture).loadFromFile(path_to_folder+"\\"+"water.png");
-    textures.emplace(Tile::WATER, *texture);
+    }
+    else
+    {
+        auto* t = new sf::Texture;
+        t->loadFromFile(pathToTilemap + "\\" + TextureFileName);
+        for(auto & i : BorderCadification) {
+            m.emplace(i, t);
+        }
+    }
+    return m;
+}
+
+
+bool FieldView::InitTextures() {
+
+    textures.emplace(Tile::TERRAIN,  LoadTextures("grass", true));
+    textures.emplace(Tile::TERRAIN,  LoadTextures("water"));
+
 }
 
 void FieldView::DrawField(){
@@ -41,7 +62,7 @@ void FieldView::draw(sf::RenderTarget& target, sf::RenderStates states) const
         {
             try {
                 sf::Sprite sprite;
-                sprite.setTexture(textures.at(field->Tiles[j][i]->GetType()), false);
+                sprite.setTexture(*textures.at(field->Tiles[j][i]->GetType()).at("C"), false);
                 sprite.move(j*sprite.getLocalBounds().width, i*sprite.getLocalBounds().height);
                 target.draw(sprite);
             }
@@ -52,3 +73,4 @@ void FieldView::draw(sf::RenderTarget& target, sf::RenderStates states) const
         }
     }
 }
+
