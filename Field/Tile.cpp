@@ -3,7 +3,7 @@
 void Tile::SetType(enum type type){
     this->type = type;
 };
-enum type Tile::getType(){
+enum type Tile::GetType(){
     return type;
 };
 

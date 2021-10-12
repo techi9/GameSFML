@@ -1,13 +1,18 @@
 #pragma once
+
+#include <SFML/Graphics/RenderWindow.hpp>
 #include "../Field/Field.h"
 #include "../Field/FieldView.h"
 
 class Game {
+public:
+    Game(int w, int h);
+private:
     int w, h;
     Field *field;
     FieldView *fview;
 
-public:
-    Game(int w, int h);
+    void RunLoop();
+    sf::RenderWindow* window;
 };
 

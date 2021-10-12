@@ -7,7 +7,7 @@ class Tile {
 public:
     GameObj* content;
     void SetType(enum type type);
-    enum type getType();
+    enum type GetType();
     Tile(enum type type);
     bool walkable;
 };
