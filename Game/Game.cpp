@@ -8,6 +8,7 @@
 Game::Game(int w, int h){
     srand (time(NULL));
     field = new Field(w, h);
+    field->Init();
     fview = new FieldView(field, "../Field/TileSet");
     fview->DrawField();
     system("pause");

@@ -3,5 +3,5 @@
 using namespace std;
 class GameObj{ //TODO: add functions to draw it
 public:
-    virtual string Render() = 0;
+    virtual string Render() = 0; // TODO: move it to ObjView or something
 };
