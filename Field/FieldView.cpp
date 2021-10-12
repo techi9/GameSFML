@@ -1,5 +1,4 @@
 #include "FieldView.h"
-#include "Field.h"
 #include "iostream"
 #include <SFML/Graphics.hpp>
 
@@ -10,13 +9,14 @@ FieldView::FieldView(Field* field, string path_to_tilemap){
 
 bool FieldView::LoadTextures(string path_to_folder)
 {
-    textures.clear();
-    sf::Texture* texture = new sf::Texture;
-    (*texture).loadFromFile(path_to_folder+"\\"+"grass_c.png");
-    textures.emplace(TERRAIN, *texture);
+    sf::Texture *texture;
+    texture->loadFromFile(path_to_folder+"\\"+"grass_c.png");
+    std::map<BorderCadification, sf::Texture*> PairsOfTerrain;
+    PairsOfTerrain.emplace(FieldView::C, texture);
+    textures.emplace(Tile::TERRAIN,  PairsOfTerrain);
 
     (*texture).loadFromFile(path_to_folder+"\\"+"water.png");
-    textures.emplace(WATER, *texture);
+    textures.emplace(Tile::WATER, *texture);
 }
 
 void FieldView::DrawField(){
@@ -27,7 +27,7 @@ void FieldView::DrawField(){
             if (field->Tiles[i][j]->content)
                 std::cout << field->Tiles[i][j]->content->Render();
             else
-                std::cout << ((field->Tiles[i][j]->GetType() == TERRAIN) ? "# " : "~ ");
+                std::cout << ((field->Tiles[i][j]->GetType() == Tile::TERRAIN) ? "# " : "~ ");
         }
         std::cout<<std::endl;
     }

@@ -7,7 +7,7 @@
 #include "../Game/GameObjects/Entrance_and_Exit.h"
 
 #define MIN_PUDDLE_SIZE 2
-#define MAX_PUDDLE_SIZE 5
+#define MAX_PUDDLE_SIZE 10
 using namespace std;
 
 Field::Field(int w, int h) {
@@ -25,7 +25,7 @@ void Field::CreateTiles(int w, int h) {
 
     for (int i = 0; i < w; i++) {
         for (int j = 0; j < h; j++) {
-            Tiles[i][j] = new Tile(TERRAIN);
+            Tiles[i][j] = new Tile(Tile::TERRAIN);
             Tiles[i][j]->content = nullptr;
         }
     }
@@ -98,7 +98,7 @@ Field &Field::operator=(Field &other) {
         }
     }
     return *this;
-}; //weird warning here
+} //weird warning here
 
 
 void Field::CreatePuddle(int min_size, int max_size) {
@@ -107,12 +107,10 @@ void Field::CreatePuddle(int min_size, int max_size) {
     int puddle_radius = min_size + rand() % (max_size - min_size);
     for (int i = -puddle_radius; i <= puddle_radius; i++) {
         for (int j = -puddle_radius; j <= puddle_radius; j++) {
-            if (i * i + j * j <= puddle_radius * puddle_radius) {
+            if (i * i + j * j - 1 <= puddle_radius * puddle_radius) {
                 if ((x_for_puddle + i < width) && (x_for_puddle + i >= 0) &&
                     (y_for_puddle + j < height) && (y_for_puddle + j >= 0))
-                        Tiles[x_for_puddle + i][y_for_puddle + j]->SetType(WATER);
-
-                // TODO: this causes issues sometimes j and i mixed
+                        Tiles[x_for_puddle + i][y_for_puddle + j]->SetType(Tile::WATER);
             }
         }
     }
@@ -122,7 +120,7 @@ void Field::CreateEntranceAndExit() {
     //create entrance tile
     int x_for_entrance = rand() % width;
     int y_for_entrance = rand() % height;
-    while(Tiles[x_for_entrance][y_for_entrance]->GetType() == WATER )
+    while(Tiles[x_for_entrance][y_for_entrance]->GetType() == Tile::WATER )
     {
         x_for_entrance = rand() % width;
         y_for_entrance = rand() % height;
@@ -131,13 +129,13 @@ void Field::CreateEntranceAndExit() {
 
     int x_for_exit = rand() % width;
     int y_for_exit = rand() % height;
-    while(Tiles[x_for_exit][y_for_exit]->GetType() == WATER || CheckAround<Entrance>(x_for_exit, y_for_exit))
+    while(Tiles[x_for_exit][y_for_exit]->GetType() == Tile::WATER || CheckAround<Entrance>(x_for_exit, y_for_exit))
     {
         x_for_exit = rand() % width;
         y_for_exit = rand() % height;
     }
     Tiles[x_for_exit][y_for_exit]->content = new Exit();
-}; // weird warning
+}
 
 bool Field::Init() {
 

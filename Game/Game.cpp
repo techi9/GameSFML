@@ -1,17 +1,13 @@
-#include <ctime>
 #include "Game.h"
-#include "../Field/FieldView.h"
 #include <chrono>
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <sys/time.h>
-#include "../Field/Field.h"
 #include <stdlib.h>
 #include <time.h>
 
 Game::Game(int w, int h){
     // create the window
-    sf::RenderWindow window(sf::VideoMode(1080,780), "My window");
+    sf::RenderWindow window(sf::VideoMode(1280,720), "My window", sf::Style::Titlebar | sf::Style::Close);
     this->window = &window;
 
     srand (time(NULL));
