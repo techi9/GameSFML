@@ -15,6 +15,7 @@ Game::Game(int w, int h){
     field->Init();
     fview = new FieldView(field, "../Field/TileSet");
     fview->DrawField();
+
     RunLoop();
 }
 

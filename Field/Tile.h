@@ -1,6 +1,6 @@
 #pragma once
 #include "../Game/GameObj.h"
-#include "FieldView.h"
+
 
 
 class Tile {

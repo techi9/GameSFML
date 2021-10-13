@@ -1,8 +1,7 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics.hpp>
 #include <map>
-#include "Field.h" ////TODO:cyclic include
-#include "Tile.h"
+#include "Field.h"
 #include "string"
 using namespace std;
 
@@ -14,7 +13,7 @@ class FieldView: public sf::Drawable {
     std::map<enum Tile::type, std::map<string, sf::Texture*>> textures; //['Tile::type'][BorderCadification] = Texture
     string pathToTilemap;
 public:
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+    void draw(sf::RenderTarget& target, sf::RenderStates states)const override;
     FieldView(Field* field, string pathToTilemap);
     void DrawField();
 
