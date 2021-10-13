@@ -1,9 +1,9 @@
 #include "Tile.h"
 
-void Tile::SetType(enum type type){
+void Tile::SetType(enum Tile::type type){
     this->type = type;
 };
-enum type Tile::GetType(){
+enum Tile::type Tile::GetType(){
     return type;
 };
 

@@ -1,5 +1,6 @@
 # Project exclude paths
 /cmake-build-debug/
+vcs.xml
 /cmake-build-sfml/CMakeFiles/3.20.2/CompilerIdC/a.exe
 /cmake-build-sfml/CMakeFiles/3.20.2/CompilerIdCXX/a.exe
 /cmake-build-sfml/CMakeFiles/nibbles_01.dir/build.make

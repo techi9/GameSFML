@@ -1,22 +1,43 @@
 #include "FieldView.h"
-#include "Field.h"
 #include "iostream"
-#include <SFML/Graphics.hpp>
+#include <utility>
 
-FieldView::FieldView(Field* field, string path_to_tilemap){
-    this->field = field;
-    LoadTextures(path_to_tilemap);
+bool FieldView::InitTextures() {
+
+    this->textures.emplace(Tile::TERRAIN,  LoadTextures("grass", true));
+    this->textures.emplace(Tile::WATER,  LoadTextures("water"));
+    sf::Texture t  = *(this->textures[Tile::WATER]["tl"]);
+    return true; //TODO: add check
 }
 
-bool FieldView::LoadTextures(string path_to_folder)
-{
-    textures.clear();
-    sf::Texture* texture = new sf::Texture;
-    (*texture).loadFromFile(path_to_folder+"\\"+"grass_c.png");
-    textures.emplace(TERRAIN, *texture);
+FieldView::FieldView(Field* field, string pathToTilemap){
+    this->field = field;
+    this->pathToTilemap = std::move(pathToTilemap);
+    InitTextures();
+}
 
-    (*texture).loadFromFile(path_to_folder+"\\"+"water.png");
-    textures.emplace(WATER, *texture);
+
+map<string, sf::Texture *> FieldView::LoadTextures(const string& TextureFileName, bool versatile) { //TODO:requires destructor
+    map<string, sf::Texture *> m;
+    sf::Texture *texture[9];
+    if(versatile)
+    {
+        for(int i = 0; i<9;i++) {
+            texture[i] = new sf::Texture;
+            texture[i]->loadFromFile(pathToTilemap + "/" + TextureFileName + "_" + BorderCadification[i]+".png");
+            m.emplace(BorderCadification[i], texture[i]);
+        }
+
+    }
+    else
+    {
+        auto* t = new sf::Texture;
+        t->loadFromFile(pathToTilemap + "\\" + TextureFileName+".png");
+        for(const string& i : BorderCadification) {
+            m.emplace(i, t);
+        }
+    }
+    return m;
 }
 
 void FieldView::DrawField(){
@@ -27,7 +48,7 @@ void FieldView::DrawField(){
             if (field->Tiles[i][j]->content)
                 std::cout << field->Tiles[i][j]->content->Render();
             else
-                std::cout << ((field->Tiles[i][j]->GetType() == TERRAIN) ? "# " : "~ ");
+                std::cout << ((field->Tiles[i][j]->GetType() == Tile::TERRAIN) ? "# " : "~ ");
         }
         std::cout<<std::endl;
     }
@@ -39,16 +60,14 @@ void FieldView::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         for (int j=0; j<this->field->width; j++)
         {
-            try {
-                sf::Sprite sprite;
-                sprite.setTexture(textures.at(field->Tiles[j][i]->GetType()), false);
-                sprite.move(j*sprite.getLocalBounds().width, i*sprite.getLocalBounds().height);
-                target.draw(sprite);
-            }
-            catch(std::exception)
-            {
-                std::cerr << "Texture for " << field->Tiles[j][i]->GetType() << " not found." << std::endl;
-            }
+            //TODO: create logic for drawing sides
+            sf::Texture t  = *(this->textures.at(field->Tiles[j][i]->GetType()).at("c"));
+            sf::Sprite sprite;
+            sprite.setTexture(t, false);
+            sprite.move(j*sprite.getLocalBounds().width, i*sprite.getLocalBounds().height);
+            target.draw(sprite);
+
         }
     }
 }
+
