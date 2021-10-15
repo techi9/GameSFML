@@ -17,8 +17,6 @@ class Field {
 
     void DeleteTiles();
 
-    friend class FieldView;
-
     template<typename T>
     bool CheckAround(int x, int y, int r = 1) {
         for (int i = -r; i < r + 1; i++) {
@@ -33,9 +31,14 @@ class Field {
 
     Tile ***Tiles;
     int width, height;
+
+    friend class FieldView;
+
 public:
     Field(int w, int h);
+
     bool Init();
+
     Field(Field &other);
 
     Field(Field &&other) noexcept;

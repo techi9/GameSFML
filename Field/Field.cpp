@@ -98,7 +98,7 @@ Field &Field::operator=(Field &other) {
         }
     }
     return *this;
-} //weird warning here
+}
 
 
 void Field::CreatePuddle(int min_size, int max_size) {
@@ -139,8 +139,12 @@ void Field::CreateEntranceAndExit() {
 
 bool Field::Init() {
 
-    CreateTiles();
-
+    try{
+        CreateTiles();
+    }
+    catch (std::bad_alloc){
+        return false;
+    }
     CreatePuddle(MIN_PUDDLE_SIZE, MAX_PUDDLE_SIZE); //TODO: move this to external field generator or builder
     CreatePuddle(MIN_PUDDLE_SIZE, MAX_PUDDLE_SIZE);
     CreateEntranceAndExit();

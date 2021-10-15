@@ -2,17 +2,16 @@
 #include "../Game/GameObj.h"
 
 
-
 class Tile {
 public:
     enum type{TERRAIN, WATER};
-    GameObj* content;
+    Tile(enum type type);
     void SetType(enum type type);
     enum type GetType();
-    Tile(enum type type);
-    bool walkable;
 private:
-    friend class FieldView;
+    GameObj* content;
+    bool walkable;
     type type;
-    //friend class FieldView;
+    friend class Field;
+    friend class FieldView;
 };

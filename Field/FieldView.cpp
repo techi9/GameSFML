@@ -3,7 +3,6 @@
 #include <utility>
 
 bool FieldView::InitTextures() {
-
     this->textures.emplace(Tile::TERRAIN,  LoadTextures("grass", true));
     this->textures.emplace(Tile::WATER,  LoadTextures("water"));
     sf::Texture t  = *(this->textures[Tile::WATER]["tl"]);

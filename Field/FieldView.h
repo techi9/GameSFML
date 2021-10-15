@@ -17,5 +17,4 @@ public:
     FieldView(Field* field, string pathToTilemap);
     void DrawField();
 
-
 };
