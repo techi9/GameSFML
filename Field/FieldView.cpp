@@ -5,7 +5,6 @@
 bool FieldView::InitTextures() {
     this->textures.emplace(Tile::TERRAIN,  LoadTextures("grass", true));
     this->textures.emplace(Tile::WATER,  LoadTextures("water"));
-    sf::Texture t  = *(this->textures[Tile::WATER]["tl"]);
     return true; //TODO: add check
 }
 
@@ -67,6 +66,26 @@ void FieldView::draw(sf::RenderTarget& target, sf::RenderStates states) const
             target.draw(sprite);
 
         }
+    }
+}
+
+FieldView::~FieldView(){
+    map<string, sf::Texture *> m;
+    for (auto tex : textures){
+        m = std::move(tex.second);
+        if(m[BorderCadification[0]] == m[BorderCadification[1]])
+        {
+            delete m[BorderCadification[0]];
+            m[BorderCadification[0]] = nullptr;
+        }
+        else
+            for (const auto& borders : BorderCadification) {
+                if (m[borders])
+                {
+                    delete m[borders];
+                    m[borders] = nullptr;
+                }
+            }
     }
 }
 

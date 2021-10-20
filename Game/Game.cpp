@@ -4,11 +4,14 @@
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#define TILE_SIZE 32
 
 Game::Game(int w, int h){
     // create the window
-    sf::RenderWindow window(sf::VideoMode(1280,720), "My window", sf::Style::Titlebar | sf::Style::Close);
-    this->window = &window;
+    this->w = w;
+    this->h = h;
+    auto wind = new sf::RenderWindow(sf::VideoMode( w * TILE_SIZE,h * TILE_SIZE), "My window", sf::Style::Titlebar | sf::Style::Close);
+    this->window = wind;
 
     srand (time(NULL));
     field = new Field(w, h);
@@ -40,4 +43,9 @@ void Game::RunLoop()
         // end the current frame
         window->display();
     }
+}
+
+Game::~Game(){
+    delete fview;
+    delete field;
 }
