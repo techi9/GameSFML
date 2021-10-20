@@ -3,7 +3,7 @@ project(nibbles_01)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(nibbles_01 main.cpp Game/Game.cpp Game/Game.h Field/Field.cpp Field/Field.h Field/FieldView.cpp Field/FieldView.h Game/GameObj.h Field/Tile.cpp Field/Tile.h Game/GameObjects/Entrance_and_Exit.cpp Game/GameObjects/Entrance_and_Exit.h Field/FieldGeneration/FieldBuilder.cpp Field/FieldGeneration/FieldBuilder.h)
+add_executable(nibbles_01 main.cpp Game/Game.cpp Game/Game.h Field/Field.cpp Field/Field.h Field/FieldView.cpp Field/FieldView.h GameObjects/GameObj.h Field/Tile.cpp Field/Tile.h GameObjects/Entrance_and_Exit.cpp GameObjects/Entrance_and_Exit.h Field/FieldGeneration/FieldBuilder.cpp Field/FieldGeneration/FieldBuilder.h)
 
 include_directories(headers c:/SFML/include)
 

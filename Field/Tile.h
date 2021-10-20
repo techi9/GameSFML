@@ -1,5 +1,5 @@
 #pragma once
-#include "../Game/GameObj.h"
+#include "../GameObjects/GameObj.h"
 
 
 class Tile {
