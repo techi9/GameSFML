@@ -44,7 +44,7 @@ void FieldView::DrawField(){
         for(int i = 0; i < field->width; i++)
         {
             if (field->Tiles[i][j]->content)
-                std::cout << field->Tiles[i][j]->content->Render();
+                std::cout << field->Tiles[i][j]->content->ObjType();
             else
                 std::cout << ((field->Tiles[i][j]->GetType() == Tile::TERRAIN) ? "# " : "~ ");
         }

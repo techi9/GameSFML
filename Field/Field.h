@@ -30,7 +30,17 @@ class Field {
     };
 
     Tile ***Tiles;
+public:
+    Tile ***getTiles() const;
+
+private:
     int width, height;
+public:
+    int getWidth() const;
+
+    int getHeight() const;
+
+private:
 
     friend class FieldView;
 

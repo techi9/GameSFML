@@ -19,6 +19,7 @@ Game::Game(int w, int h){
     fview = new FieldView(field, "../Field/TileSet");
     fview->DrawField();
 
+    colMap = new CollsionMap(*field, TILE_SIZE);
     RunLoop();
 }
 
@@ -30,10 +31,11 @@ void Game::RunLoop()
         sf::Event event;
         while (window->pollEvent(event))
         {
-            // "close requested" event: we close the window
             if (event.type == sf::Event::Closed)
                 window->close();
         }
+
+
 
         // clear the window with black color
         window->clear(sf::Color::Black);

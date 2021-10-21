@@ -155,3 +155,15 @@ Field::~Field() {
     DeleteTiles();
 }
 
+int Field::getWidth() const {
+    return width;
+}
+
+int Field::getHeight() const {
+    return height;
+}
+
+Tile ***Field::getTiles() const {
+    return Tiles;
+}
+
