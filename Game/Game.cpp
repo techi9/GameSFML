@@ -37,6 +37,9 @@ void Game::RunLoop()
 
 
 
+        // TODO: list of entities / update every obj pos using speed
+        // than controllers (controller(player)) calls other methods like interact or attack
+
         // clear the window with black color
         window->clear(sf::Color::Black);
 
