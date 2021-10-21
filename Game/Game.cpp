@@ -86,7 +86,7 @@ void Game::UpdateEntities() { //checks in both directions but not diagonally
         }
 
         for(int y_add = 0; y_add < ceil(ent->getSpeed().second); y_add++){
-            if (!(colMap->at(ent->getPosition().first, ent->getPosition().second) + y_add))
+            if (!(colMap->at(ent->getPosition().first , ent->getPosition().second) + y_add))
             {
                 stop = true;
                 break;

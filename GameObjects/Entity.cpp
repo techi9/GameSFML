@@ -49,8 +49,8 @@ void Entity::setSpeed(float x, float y) { //and max speed check
     }
 
     speed = std::make_pair(finalSpeedX, finalSpeedY);
-    if (finalSpeedX || finalSpeedY)
-        std::cout<<finalSpeedX<<"------------------------------ "<<finalSpeedY<<'\n';
+//    if (finalSpeedX || finalSpeedY)
+//        std::cout<<finalSpeedX<<"------------------------------ "<<finalSpeedY<<'\n';
 }
 
 void Entity::setPosition(float x, float y) {
