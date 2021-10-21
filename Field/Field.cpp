@@ -4,7 +4,7 @@
 
 #include <stdlib.h>
 #include "iostream"
-#include "../GameObjects/Entrance_and_Exit.h"
+#include "../GameObjects/EntranceAndExit/Entrance_and_Exit.h"
 
 #define MIN_PUDDLE_SIZE 2
 #define MAX_PUDDLE_SIZE 10

@@ -59,9 +59,9 @@ void FieldView::draw(sf::RenderTarget& target, sf::RenderStates states) const
         for (int j=0; j<this->field->width; j++)
         {
             //TODO: create logic for drawing sides
-            sf::Texture t  = *(this->textures.at(field->Tiles[j][i]->GetType()).at("c"));
+            sf::Texture *t  = (this->textures.at(field->Tiles[j][i]->GetType()).at("c"));
             sf::Sprite sprite;
-            sprite.setTexture(t, false);
+            sprite.setTexture(*t, false);
             sprite.move(j*sprite.getLocalBounds().width, i*sprite.getLocalBounds().height);
             target.draw(sprite);
 
