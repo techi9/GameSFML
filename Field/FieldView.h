@@ -15,6 +15,7 @@ class FieldView: public sf::Drawable {
 public:
     void draw(sf::RenderTarget& target, sf::RenderStates states)const override;
     FieldView(Field* field, string pathToTilemap);
+    ~FieldView();
     void DrawField();
 
 };

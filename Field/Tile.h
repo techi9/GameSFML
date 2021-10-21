@@ -1,5 +1,5 @@
 #pragma once
-#include "../Game/GameObj.h"
+#include "../GameObjects/GameObj.h"
 
 
 class Tile {
@@ -8,6 +8,7 @@ public:
     Tile(enum type type);
     void SetType(enum type type);
     enum type GetType();
+    bool isWalkable() const;
 private:
     GameObj* content;
     bool walkable;
@@ -15,3 +16,4 @@ private:
     friend class Field;
     friend class FieldView;
 };
+

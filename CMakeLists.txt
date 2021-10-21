@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.17)
-project(nibbles_01)
+project(GameSFML)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(nibbles_01 main.cpp Game/Game.cpp Game/Game.h Field/Field.cpp Field/Field.h Field/FieldView.cpp Field/FieldView.h Game/GameObj.h Field/Tile.cpp Field/Tile.h Game/GameObjects/Entrance_and_Exit.cpp Game/GameObjects/Entrance_and_Exit.h Field/FieldGeneration/FieldBuilder.cpp Field/FieldGeneration/FieldBuilder.h)
+add_executable(GameSFML main.cpp Game/Game.cpp Game/Game.h Field/Field.cpp Field/Field.h Field/FieldView.cpp Field/FieldView.h GameObjects/GameObj.h Field/Tile.cpp Field/Tile.h GameObjects/Entrance_and_Exit.cpp GameObjects/Entrance_and_Exit.h Field/FieldGeneration/FieldBuilder.cpp Field/FieldGeneration/FieldBuilder.h GameObjects/CollsionMap.cpp GameObjects/CollsionMap.h)
 
 include_directories(headers c:/SFML/include)
 
@@ -12,7 +12,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
 find_package(SFML REQUIRED system window graphics network audio)
 if (SFML_FOUND)
     include_directories(${SFML_INCLUDE_DIR})
-    target_link_libraries(nibbles_01 ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
+    target_link_libraries(GameSFML ${SFML_LIBRARIES} ${SFML_DEPENDENCIES})
 endif()
 
 

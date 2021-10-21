@@ -1,13 +1,13 @@
 #pragma once
-#include "../GameObj.h"
+#include "GameObj.h"
 class Entrance : public GameObj {
 public:
     Entrance();
-    string Render();
+    string ObjType();
 };
 
 class Exit : public GameObj {
 public:
     Exit();
-    string Render();
+    string ObjType();
 };

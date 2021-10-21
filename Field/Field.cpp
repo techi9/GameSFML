@@ -4,7 +4,7 @@
 
 #include <stdlib.h>
 #include "iostream"
-#include "../Game/GameObjects/Entrance_and_Exit.h"
+#include "../GameObjects/Entrance_and_Exit.h"
 
 #define MIN_PUDDLE_SIZE 2
 #define MAX_PUDDLE_SIZE 10
@@ -153,5 +153,17 @@ bool Field::Init() {
 
 Field::~Field() {
     DeleteTiles();
+}
+
+int Field::getWidth() const {
+    return width;
+}
+
+int Field::getHeight() const {
+    return height;
+}
+
+Tile ***Field::getTiles() const {
+    return Tiles;
 }
 

@@ -4,11 +4,11 @@
 
 #include "Entrance_and_Exit.h"
 Entrance::Entrance(){};
-string Entrance::Render(){
+string Entrance::ObjType(){
     return "[]";
 };
 
 Exit::Exit(){};
-string Exit::Render(){
+string Exit::ObjType(){
     return "()";
 };
