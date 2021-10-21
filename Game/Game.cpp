@@ -50,6 +50,10 @@ void Game::RunLoop()
     }
 }
 
+void Game::CreateEntity(Entity ent){
+    EntitiesList.push_back(ent);
+}
+
 Game::~Game(){
     delete fview;
     delete field;

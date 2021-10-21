@@ -3,7 +3,8 @@
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "../Field/Field.h"
 #include "../Field/FieldView.h"
-#include "../GameObjects/CollsionMap.h"
+#include "CollsionMap.h"
+#include "../GameObjects/Entity.h"
 
 class Game {
 public:
@@ -14,6 +15,9 @@ private:
     Field *field;
     FieldView *fview;
     CollsionMap *colMap;
+    vector<Entity> EntitiesList;
+    void CreateEntity(Entity ent);
+
 
     void RunLoop();
     sf::RenderWindow* window;
