@@ -1,5 +1,3 @@
-#pragma once
-
 #include <SFML/Graphics/RenderWindow.hpp>
 #include "../Field/Field.h"
 #include "../Field/FieldView.h"
@@ -10,12 +8,15 @@
 
 class Game {
 public:
-    Game(int w, int h);
-    ~Game();
     void CreateEntity(Entity *ent);
     void CreateObj(GameObj obj);
-
+    ~Game();
+    static void Init(int w, int h);
+    static const Field* getField();
 private:
+    Game();
+    Game(int w, int h);
+    static Game game;
     int w, h;
     Field *field;
     FieldView *fview;
@@ -24,10 +25,6 @@ private:
     ObjectView *objectView;
     void UpdateEntities();
     ControllerKeyboard* playerController;
-
-
-
-
     void RunLoop();
     sf::RenderWindow* window;
 };
