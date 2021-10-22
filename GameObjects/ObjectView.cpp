@@ -10,6 +10,7 @@ ObjectView::ObjectView(std::vector<Entity*>* ListOfObjects, const std::string& P
     sf::Texture t;
     t.loadFromFile(PathToObjects + "\\" + "Player.png");
     PlayerSprite.setTexture(t);
+    PlayerSprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
 
 }
 

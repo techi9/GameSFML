@@ -13,6 +13,7 @@ CollsionMap::CollsionMap(Field &field, int tileSize) {
     }
     for (int tile_y = 0; tile_y < field.getHeight(); tile_y++) {
         for (int tile_x = 0; tile_x < field.getWidth(); tile_x++) {
+            cout << field.getTiles()[tile_x][tile_y]->isWalkable();
             for (int x = tile_x * tileSize; x < tile_x * tileSize + tileSize; x++) {
                 for (int y = tile_y * tileSize; y < tile_y * tileSize + tileSize; y++) {
                     colmap[x][y] = field.getTiles()[tile_x][tile_y]->isWalkable();
@@ -21,6 +22,7 @@ CollsionMap::CollsionMap(Field &field, int tileSize) {
                 }
             }
         }
+        cout<<'\n';
     }
     cout << "Creating finished";
 }

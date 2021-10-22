@@ -74,31 +74,52 @@ Game::~Game(){
 }
 
 void Game::UpdateEntities() { //checks in both directions but not diagonally
-    bool stop = false;
+    bool stopR = false; // TODO: Add collider
+    bool stopL = false; // TODO: Add collider
+    bool stopUp = false;
+    bool stopD = false;
     for(auto &ent : EntitiesList){
-        stop = false;
-        for(int x_add = 0; x_add < ceil(ent->getSpeed().first); x_add++){
-            if (!(colMap->at(ent->getPosition().first + x_add, ent->getPosition().second)))  //TODO: fix to check in other direction
-            {
-                stop = true;
-                break;
-            }
+        stopR = false;
+        stopL = false;
+        stopUp = false;
+        stopD = false;
+        if(!(colMap->at(int(ceil(ent->getPosition().first + TILE_SIZE - 1)),
+                        int(ceil(ent->getPosition().second + 1)))))
+        {
+            stopR = true;
         }
 
-        for(int y_add = 0; y_add < ceil(ent->getSpeed().second); y_add++){
-            if (!(colMap->at(ent->getPosition().first , ent->getPosition().second) + y_add))
-            {
-                stop = true;
-                break;
-            }
+        if(!(colMap->at(int(ceil(ent->getPosition().first)),
+                     int(ceil(ent->getPosition().second + 1)))))
+        {
+            stopL = true;
         }
 
-        if(!stop){
-            ent->move();
+        if(!(colMap->at(int(ceil(ent->getPosition().first)),
+                        int(ceil(ent->getPosition().second)))))
+        {
+            stopUp = true;
         }
-        else{
-            continue;
+
+        if(!(colMap->at(int(ceil(ent->getPosition().first) + 1),
+                        int(ceil(ent->getPosition().second)) + TILE_SIZE-1)))
+        {
+            stopD = true;
         }
+
+        if(stopR){
+            ent->setSpeed(ent->getSpeed().first > 0 ? 0 : ent->getSpeed().first, ent->getSpeed().second);
+        }
+        if(stopL){
+            ent->setSpeed(ent->getSpeed().first < 0 ? 0 : ent->getSpeed().first, ent->getSpeed().second);
+        }
+        if(stopUp){
+            ent->setSpeed(ent->getSpeed().first, ent->getSpeed().second < 0 ? 0 : ent->getSpeed().second);
+        }
+        if(stopD){
+            ent->setSpeed(ent->getSpeed().first, ent->getSpeed().second > 0 ? 0 : ent->getSpeed().second);
+        }
+        ent->move();
     }
 }
 
