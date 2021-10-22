@@ -83,29 +83,31 @@ void Game::UpdateEntities() { //checks in both directions but not diagonally
         stopL = false;
         stopUp = false;
         stopD = false;
-        if(!(colMap->at(int(ceil(ent->getPosition().first + TILE_SIZE - 1)),
-                        int(ceil(ent->getPosition().second + 1)))))
+        if(!(colMap->at(int(ceil(ent->getPosition().first + TILE_SIZE)),
+                        int(ceil(ent->getPosition().second + 1)))) ||
+                        !(colMap->at(ent->getPosition().first + 1 + TILE_SIZE, ent->getPosition().second + TILE_SIZE - 1)))
         {
             stopR = true;
         }
 
-        if(!(colMap->at(int(ceil(ent->getPosition().first)),
-                     int(ceil(ent->getPosition().second + 1)))))
+        if(!(colMap->at(int(ceil(ent->getPosition().first) - 1),
+                     int(ceil(ent->getPosition().second + 1)))) ||
+                     !(colMap->at(int(ceil(ent->getPosition().first) - 1), ent->getPosition().second + TILE_SIZE - 1)))
         {
             stopL = true;
         }
 
         if(!(colMap->at(int(ceil(ent->getPosition().first)),
                         int(ceil(ent->getPosition().second)))) ||
-                !(colMap->at(int(ceil(ent->getPosition().first + TILE_SIZE)),
+                !(colMap->at(int(ceil(ent->getPosition().first + TILE_SIZE - 2)),
                            int(ceil(ent->getPosition().second)))))
         {
             stopUp = true;
         }
 
         if(!(colMap->at(int(ceil(ent->getPosition().first) + 1),
-                        int(ceil(ent->getPosition().second)) + TILE_SIZE-1)))
-
+                        int(ceil(ent->getPosition().second)) + TILE_SIZE-1)) ||
+                        !(colMap->at(ent->getPosition().first - 1 + TILE_SIZE, ent->getPosition().second + TILE_SIZE)))
         {
             stopD = true;
         }

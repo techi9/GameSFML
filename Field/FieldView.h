@@ -10,7 +10,7 @@ class FieldView: public sf::Drawable {
     bool InitTextures();
     std::map<string, sf::Texture*> LoadTextures(const string& TextureFileName, bool versatile = false);
     Field *field;
-    std::map<enum Tile::type, std::map<string, sf::Texture*>> textures; //['Tile::type'][BorderCadification] = Texture
+    std::map<enum Tile::type, std::map<string, sf::Texture*>> textures; //map['Tile::type'][BorderCadification] = Texture
     string pathToTilemap;
 public:
     void draw(sf::RenderTarget& target, sf::RenderStates states)const override;

@@ -15,7 +15,7 @@ FieldView::FieldView(Field* field, string pathToTilemap){
 }
 
 
-map<string, sf::Texture *> FieldView::LoadTextures(const string& TextureFileName, bool versatile) { //TODO:requires destructor
+map<string, sf::Texture *> FieldView::LoadTextures(const string& TextureFileName, bool versatile) {
     map<string, sf::Texture *> m;
     sf::Texture *texture[9];
     if(versatile)

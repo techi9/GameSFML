@@ -12,19 +12,19 @@ ControllerKeyboard::ControllerKeyboard(Player *player) {
 void ControllerKeyboard::Control() { //TODO: fix moving diagonally
     bool speedChanged = false;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
-        speedX -= 1;
+        speedX =- 1;
         speedChanged = true;
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::D)){
-        speedX += 1;
+        speedX = 1;
         speedChanged = true;
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
-        speedY -= 1;
+        speedY = -1;
         speedChanged = true;
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
-        speedY += 1;
+        speedY = 1;
         speedChanged = true;
     }
     if(!speedChanged)
