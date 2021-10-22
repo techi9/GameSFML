@@ -96,13 +96,16 @@ void Game::UpdateEntities() { //checks in both directions but not diagonally
         }
 
         if(!(colMap->at(int(ceil(ent->getPosition().first)),
-                        int(ceil(ent->getPosition().second)))))
+                        int(ceil(ent->getPosition().second)))) ||
+                !(colMap->at(int(ceil(ent->getPosition().first + TILE_SIZE)),
+                           int(ceil(ent->getPosition().second)))))
         {
             stopUp = true;
         }
 
         if(!(colMap->at(int(ceil(ent->getPosition().first) + 1),
                         int(ceil(ent->getPosition().second)) + TILE_SIZE-1)))
+
         {
             stopD = true;
         }
