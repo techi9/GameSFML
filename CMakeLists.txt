@@ -3,7 +3,7 @@ project(GameSFML)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(GameSFML main.cpp Game/Game.cpp Game/Game.h Field/Field.cpp Field/Field.h Field/FieldView.cpp Field/FieldView.h GameObjects/GameObj.h Field/Tile.cpp Field/Tile.h GameObjects/EntranceAndExit/Entrance_and_Exit.cpp GameObjects/EntranceAndExit/Entrance_and_Exit.h Field/FieldGeneration/FieldBuilder.cpp Field/FieldGeneration/FieldBuilder.h Game/CollsionMap.cpp Game/CollsionMap.h GameObjects/Entity.cpp GameObjects/Entity.h GameObjects/Player/Player.cpp GameObjects/Player/Player.h GameObjects/ObjectView.cpp GameObjects/ObjectView.h GameObjects/Player/ControllerKeyboard.cpp GameObjects/Player/ControllerKeyboard.h)
+add_executable(GameSFML main.cpp Game/Game.cpp Game/Game.h Field/Field.cpp Field/Field.h Field/FieldView.cpp Field/FieldView.h GameObjects/GameObj.h Field/Tile.cpp Field/Tile.h GameObjects/EntranceAndExit/Entrance_and_Exit.cpp GameObjects/EntranceAndExit/Entrance_and_Exit.h Field/FieldGeneration/FieldBuilder.cpp Field/FieldGeneration/FieldBuilder.h Game/CollsionMap.cpp Game/CollsionMap.h GameObjects/Entity.cpp GameObjects/Entity.h GameObjects/Player/Player.cpp GameObjects/Player/Player.h GameObjects/ObjectView.cpp GameObjects/ObjectView.h GameObjects/Player/ControllerKeyboard.cpp GameObjects/Player/ControllerKeyboard.h GameObjects/Enemies/Turret/Turret.cpp GameObjects/Enemies/Turret/Turret.h)
 
 include_directories(headers c:/SFML/include)
 
