@@ -3,6 +3,7 @@
 
 int main()
 {
-    Game::Init(40, 25);
+    Game game(40, 25);
+
     return 0;
 }

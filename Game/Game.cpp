@@ -6,20 +6,16 @@
 #include <time.h>
 #include <math.h>
 #include "../GameObjects/Player/Player.h"
-
 #define TILE_SIZE 32
 
-Game::Game() {};
-
-Game::Game(int w, int h) {
+Game::Game(int w, int h){
     // create the window
     this->w = w;
     this->h = h;
-    auto wind = new sf::RenderWindow(sf::VideoMode(w * TILE_SIZE, h * TILE_SIZE), "My window",
-                                     sf::Style::Titlebar | sf::Style::Close);
+    auto wind = new sf::RenderWindow(sf::VideoMode( w * TILE_SIZE,h * TILE_SIZE), "My window", sf::Style::Titlebar | sf::Style::Close);
     this->window = wind;
 
-    srand(time(nullptr));
+    srand (time(NULL));
     field = new Field(w, h);
     field->Init();
     fview = new FieldView(field, "../Field/TileSet");
@@ -28,7 +24,7 @@ Game::Game(int w, int h) {
 
     colMap = new CollsionMap(*field, TILE_SIZE);
 
-    Player *player = new Player(50, 50);
+    Player* player = new Player(50, 50);
     playerController = new ControllerKeyboard(player);
     CreateEntity(player);
 
@@ -36,11 +32,14 @@ Game::Game(int w, int h) {
     RunLoop();
 }
 
-void Game::RunLoop() {
-    while (window->isOpen()) {
+void Game::RunLoop()
+{
+    while (window->isOpen())
+    {
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;
-        while (window->pollEvent(event)) {
+        while (window->pollEvent(event))
+        {
             if (event.type == sf::Event::Closed)
                 window->close();
         }
@@ -65,11 +64,11 @@ void Game::RunLoop() {
     }
 }
 
-void Game::CreateEntity(Entity *ent) {
+void Game::CreateEntity(Entity *ent){
     EntitiesList.push_back(ent);
 }
 
-Game::~Game() {
+Game::~Game(){
     delete fview;
     delete field;
 }
@@ -79,59 +78,53 @@ void Game::UpdateEntities() { //checks in both directions but not diagonally
     bool stopL = false; // TODO: Add collider
     bool stopUp = false;
     bool stopD = false;
-    for (auto &ent: EntitiesList) {
+    for(auto &ent : EntitiesList){
         stopR = false;
         stopL = false;
         stopUp = false;
         stopD = false;
-        if (!(colMap->at(int(ceil(ent->getPosition().first + TILE_SIZE)),
-                         int(ceil(ent->getPosition().second + 1)))) ||
-            !(colMap->at(ent->getPosition().first + 1 + TILE_SIZE, ent->getPosition().second + TILE_SIZE - 1))) {
+        if(!(colMap->at(int(ceil(ent->getPosition().first + TILE_SIZE)),
+                        int(ceil(ent->getPosition().second + 1)))) ||
+                        !(colMap->at(ent->getPosition().first + 1 + TILE_SIZE, ent->getPosition().second + TILE_SIZE - 1)))
+        {
             stopR = true;
         }
 
-        if (!(colMap->at(int(ceil(ent->getPosition().first) - 1),
-                         int(ceil(ent->getPosition().second + 1)))) ||
-            !(colMap->at(int(ceil(ent->getPosition().first) - 1), ent->getPosition().second + TILE_SIZE - 1))) {
+        if(!(colMap->at(int(ceil(ent->getPosition().first) - 1),
+                     int(ceil(ent->getPosition().second + 1)))) ||
+                     !(colMap->at(int(ceil(ent->getPosition().first) - 1), ent->getPosition().second + TILE_SIZE - 1)))
+        {
             stopL = true;
         }
 
-        if (!(colMap->at(int(ceil(ent->getPosition().first)),
-                         int(ceil(ent->getPosition().second)))) ||
-            !(colMap->at(int(ceil(ent->getPosition().first + TILE_SIZE - 2)),
-                         int(ceil(ent->getPosition().second))))) {
+        if(!(colMap->at(int(ceil(ent->getPosition().first)),
+                        int(ceil(ent->getPosition().second)))) ||
+                !(colMap->at(int(ceil(ent->getPosition().first + TILE_SIZE - 2)),
+                           int(ceil(ent->getPosition().second)))))
+        {
             stopUp = true;
         }
 
-        if (!(colMap->at(int(ceil(ent->getPosition().first) + 1),
-                         int(ceil(ent->getPosition().second)) + TILE_SIZE - 1)) ||
-            !(colMap->at(ent->getPosition().first - 1 + TILE_SIZE, ent->getPosition().second + TILE_SIZE))) {
+        if(!(colMap->at(int(ceil(ent->getPosition().first) + 1),
+                        int(ceil(ent->getPosition().second)) + TILE_SIZE-1)) ||
+                        !(colMap->at(ent->getPosition().first - 1 + TILE_SIZE, ent->getPosition().second + TILE_SIZE)))
+        {
             stopD = true;
         }
 
-        if (stopR) {
+        if(stopR){
             ent->setSpeed(ent->getSpeed().first > 0 ? 0 : ent->getSpeed().first, ent->getSpeed().second);
         }
-        if (stopL) {
+        if(stopL){
             ent->setSpeed(ent->getSpeed().first < 0 ? 0 : ent->getSpeed().first, ent->getSpeed().second);
         }
-        if (stopUp) {
+        if(stopUp){
             ent->setSpeed(ent->getSpeed().first, ent->getSpeed().second < 0 ? 0 : ent->getSpeed().second);
         }
-        if (stopD) {
+        if(stopD){
             ent->setSpeed(ent->getSpeed().first, ent->getSpeed().second > 0 ? 0 : ent->getSpeed().second);
         }
         ent->move();
     }
 }
-
-void Game::Init(int w, int h) {
-    Game::game = Game(w, h);
-}
-
-const Field *Game::getField() {
-    return Game::game.field;
-}
-
-Game Game::game;
 
