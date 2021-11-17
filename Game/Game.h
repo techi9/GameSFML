@@ -26,9 +26,10 @@ private:
     ControllerKeyboard* playerController;
 
 
-
-
     void RunLoop();
     sf::RenderWindow* window;
+    void performAttacks();
+
+    vector<Entity*> findNearEntities(Entity &ent, float radius);
 };
 

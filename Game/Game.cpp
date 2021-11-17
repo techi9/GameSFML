@@ -45,8 +45,9 @@ void Game::RunLoop()
         }
 
         UpdateEntities();
-        objectView->Update();
         playerController->Control();
+        performAttacks();
+        objectView->Update();
 
 
         // list of entities / update every obj pos using speed
@@ -73,11 +74,12 @@ Game::~Game(){
     delete field;
 }
 
-void Game::UpdateEntities() { //checks in both directions but not diagonally
-    bool stopR = false; // TODO: Add collider
-    bool stopL = false; // TODO: Add collider
+void Game::UpdateEntities() {
+    bool stopR = false;
+    bool stopL = false;
     bool stopUp = false;
     bool stopD = false;
+    //collider
     for(auto &ent : EntitiesList){
         stopR = false;
         stopL = false;
@@ -126,5 +128,31 @@ void Game::UpdateEntities() { //checks in both directions but not diagonally
         }
         ent->move();
     }
+}
+
+void Game::performAttacks() {
+    vector<Entity*> entToAttack;
+    for(auto &ent : EntitiesList){
+        if (ent->checkAttack()){
+            entToAttack = findNearEntities(*ent, ent->getAttackRadius());
+            for(auto &eToAttack : entToAttack){
+                ent->attack(*eToAttack);
+            }
+        }
+    }
+}
+
+vector<Entity*> Game::findNearEntities(Entity &ent, float radius) {
+    float xt = 0, yt = 0;
+    vector<Entity*> foundEntities;
+    for(auto &entity : EntitiesList){
+        //x,y  x1,y1  x1-x, y1-y sqr(x1,y1)<=radius
+        xt = entity->getPosition().first - ent.getPosition().first ;
+        yt = entity->getPosition().second - ent.getPosition().second;
+        if((xt*xt + yt*yt <= radius*radius) && (ent.getPosition().first != entity->getPosition().first && ent.getPosition().second != entity->getPosition().second)){
+            foundEntities.push_back(entity);
+        }
+    }
+    return foundEntities;
 }
 

@@ -27,15 +27,26 @@ public:
 protected:
     int health;
     int damage = 0;
+    float attackRadius;
+    int attackSpeed;
+public:
+    float getAttackRadius() const;
+
+    void setAttackRadius(float attackRadius);
+
+protected:
     std::pair<float, float> speed;
     float maxSpeed = 1;
     std::pair<float, float> position;
+    bool wantsAttack = false;
 public:
     Entity() = default;
 
-    virtual bool attacked(int dmg) {};
+    bool checkAttack();
 
-    virtual bool attack(int dmg) {};
+    virtual void attack();
+
+    virtual bool attack(Entity& ent) {};
 
     virtual void die() {};
 

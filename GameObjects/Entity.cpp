@@ -60,3 +60,24 @@ void Entity::setPosition(float x, float y) {
 void Entity::move() {
     setPosition(position.first + speed.first, position.second + speed.second);
 }
+
+bool Entity::checkAttack() {
+    if(wantsAttack) {
+        wantsAttack = false;
+        return true;
+    }
+    else return false;
+}
+
+void Entity::attack() {//TODO: add attackspeed check
+
+    wantsAttack = true;
+}
+
+float Entity::getAttackRadius() const {
+    return attackRadius;
+}
+
+void Entity::setAttackRadius(float attackRadius) {
+    Entity::attackRadius = attackRadius;
+}

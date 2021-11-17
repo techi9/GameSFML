@@ -11,6 +11,10 @@ ControllerKeyboard::ControllerKeyboard(Player *player) {
 
 void ControllerKeyboard::Control() {
 
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+        player->attack();
+    }
+
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
         speedX = - 1;
     }
