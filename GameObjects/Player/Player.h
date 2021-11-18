@@ -7,7 +7,9 @@
 #include "../Entity.h"
 
 class Player : public Entity{
+
 public:
+    using Entity::attack;
     Player(int xOfEnt, int yofEnt);
 };
 

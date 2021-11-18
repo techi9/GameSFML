@@ -81,3 +81,8 @@ float Entity::getAttackRadius() const {
 void Entity::setAttackRadius(float attackRadius) {
     Entity::attackRadius = attackRadius;
 }
+
+bool Entity::attack(Entity &ent) {
+    ent.setHealth(ent.getHealth() - damage);
+    return true;
+}

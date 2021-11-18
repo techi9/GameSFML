@@ -9,10 +9,15 @@ ControllerKeyboard::ControllerKeyboard(Player *player) {
     this->player = player;
 }
 
-void ControllerKeyboard::Control() {
+void ControllerKeyboard::control() {
 
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+    static bool attacked = false;
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !attacked){
         player->attack();
+        attacked = true;
+    }
+    else if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+        attacked = false;
     }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){

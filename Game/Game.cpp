@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
-#include "../GameObjects/Player/Player.h"
+
 #define TILE_SIZE 32
 
 Game::Game(int w, int h){
@@ -15,19 +15,25 @@ Game::Game(int w, int h){
     auto wind = new sf::RenderWindow(sf::VideoMode( w * TILE_SIZE,h * TILE_SIZE), "My window", sf::Style::Titlebar | sf::Style::Close);
     this->window = wind;
 
-    srand (time(NULL));
+    srand (time(nullptr));
     field = new Field(w, h);
     field->Init();
     fview = new FieldView(field, "../Field/TileSet");
     fview->DrawField();
     objectView = new ObjectView(&EntitiesList, "../Textures");
-
     colMap = new CollsionMap(*field, TILE_SIZE);
 
-    Player* player = new Player(50, 50);
-    playerController = new ControllerKeyboard(player);
+    Player* player = new Player(50, 50); //create palyer
+    addController(new ControllerKeyboard(player));
     CreateEntity(player);
 
+    Turret* turret = new Turret(100, 100); //create first enemy
+    addController(new EnemyController(*colMap ,*turret));
+    CreateEntity(turret);
+
+    Troll* troll = new Troll(500, 500);
+    addController(new EnemyController(*colMap, *troll));
+    CreateEntity(troll);
 
     RunLoop();
 }
@@ -44,8 +50,10 @@ void Game::RunLoop()
                 window->close();
         }
 
+
         UpdateEntities();
-        playerController->Control();
+        objectView->Update();
+
         performAttacks();
         objectView->Update();
 
@@ -75,12 +83,22 @@ Game::~Game(){
 }
 
 void Game::UpdateEntities() {
+
+
+    for (auto *cnt : Controllers){
+        cnt->control();
+
+    }
+
+
     bool stopR = false;
     bool stopL = false;
     bool stopUp = false;
     bool stopD = false;
     //collider
     for(auto &ent : EntitiesList){
+
+
         stopR = false;
         stopL = false;
         stopUp = false;
@@ -154,5 +172,9 @@ vector<Entity*> Game::findNearEntities(Entity &ent, float radius) {
         }
     }
     return foundEntities;
+}
+
+void Game::addController(Controller *cont) {
+    Controllers.push_back(cont);
 }
 

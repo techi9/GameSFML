@@ -5,15 +5,16 @@
 #ifndef GAMESFML_CONTROLLERKEYBOARD_H
 #define GAMESFML_CONTROLLERKEYBOARD_H
 #include "Player.h"
+#include "../../Game/Controller.h"
 
-class ControllerKeyboard {
+class ControllerKeyboard : public Controller{
 private:
     Player *player;
     int speedX = 0;
     int speedY = 0;
 public:
     ControllerKeyboard(Player *player);
-    void Control();
+    void control();
 };
 
 

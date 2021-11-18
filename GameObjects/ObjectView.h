@@ -8,6 +8,8 @@
 class ObjectView : public sf::Drawable{
 private:
     sf::Sprite PlayerSprite;
+    sf::Sprite TurretSprite;
+    sf::Sprite TrollSprite;
     std::vector<Entity*> *EntitiesList;
 public:
     ObjectView(std::vector<Entity*> *ListOfObjects, const std::string& PathToObjects);

@@ -1,12 +1,10 @@
-//
-// Created by tucha on 29.10.2021.
-//
-
 #include "Turret.h"
 
 Turret::Turret(int x, int y) {
-    health = 250;
-    damage = 5;
+    health = 200;
     maxSpeed = 0;
+    damage = 3;
+    attackRadius = 100;
+    attackSpeed = 0.33;
     setPosition(x, y);
 }

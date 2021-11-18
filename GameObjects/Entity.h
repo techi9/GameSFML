@@ -25,18 +25,18 @@ public:
     void move();
 
 protected:
-    int health;
-    int damage = 0;
-    float attackRadius;
-    int attackSpeed;
+    float health = 1;
+    float damage = 0;
+    float attackRadius = 0;
+    float attackSpeed = 0;
+    float maxSpeed = 1;
 public:
     float getAttackRadius() const;
 
     void setAttackRadius(float attackRadius);
 
-protected:
+private:
     std::pair<float, float> speed;
-    float maxSpeed = 1;
     std::pair<float, float> position;
     bool wantsAttack = false;
 public:
@@ -44,9 +44,9 @@ public:
 
     bool checkAttack();
 
-    virtual void attack();
+    void attack();
 
-    virtual bool attack(Entity& ent) {};
+    virtual bool attack(Entity& ent);
 
     virtual void die() {};
 
