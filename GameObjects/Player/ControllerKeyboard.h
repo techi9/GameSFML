@@ -9,11 +9,11 @@
 
 class ControllerKeyboard : public Controller{
 private:
-    Player *player;
+    Entity *player;
     int speedX = 0;
     int speedY = 0;
 public:
-    ControllerKeyboard(Player *player);
+    ControllerKeyboard(Entity *player);
     void control();
 };
 

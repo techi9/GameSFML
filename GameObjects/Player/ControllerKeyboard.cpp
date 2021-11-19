@@ -5,7 +5,7 @@
 #include "ControllerKeyboard.h"
 #include "SFML/Graphics.hpp"
 
-ControllerKeyboard::ControllerKeyboard(Player *player) {
+ControllerKeyboard::ControllerKeyboard(Entity *player) {
     this->player = player;
 }
 

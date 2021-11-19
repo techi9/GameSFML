@@ -3,8 +3,9 @@
 #define GAMESFML_ENTITY_H
 
 #include <utility>
+#include "GameObj.h"
 
-class Entity {
+class Entity : public GameObj{
 public:
     int getHealth() const;
 

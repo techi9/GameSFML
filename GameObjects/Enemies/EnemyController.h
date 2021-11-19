@@ -10,8 +10,8 @@
 
 class EnemyController : public Controller{
 
-    CollsionMap field;
-    Entity ent;
+    CollsionMap &field;
+    Entity &ent;
 
 public:
     EnemyController(CollsionMap &field, Entity &ent);
