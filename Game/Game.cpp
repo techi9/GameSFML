@@ -8,6 +8,14 @@
 
 #define TILE_SIZE 32
 
+bool isDeleted(Entity* ent){
+    if(ent->isDead()){
+        delete ent;
+        return true;
+    }
+    else return false;
+}
+
 Game::Game(int w, int h){
     // create the window
     this->w = w;
@@ -15,7 +23,7 @@ Game::Game(int w, int h){
     auto wind = new sf::RenderWindow(sf::VideoMode( w * TILE_SIZE,h * TILE_SIZE), "My window", sf::Style::Titlebar | sf::Style::Close);
     this->window = wind;
 
-    srand (time(nullptr));
+    srand (time(nullptr)-23);
     field = new Field(w, h);
     field->Init();
     fview = new FieldView(field, "../Field/TileSet");
@@ -27,7 +35,7 @@ Game::Game(int w, int h){
     addController(new ControllerKeyboard(player));
     CreateEntity(player);
 
-    Turret* turret = new Turret(100, 100); //create first enemy
+    Turret* turret = new Turret(200, 100); //create first enemy
     addController(new EnemyController(*colMap ,*turret));
     CreateEntity(turret);
 
@@ -158,7 +166,9 @@ void Game::performAttacks() {
             }
         }
     }
+    EntitiesList.erase(std::remove_if(EntitiesList.begin(), EntitiesList.end(), isDeleted), EntitiesList.end());
 }
+
 
 vector<Entity*> Game::findNearEntities(Entity &ent, float radius) {
     float xt = 0, yt = 0;
@@ -177,4 +187,6 @@ vector<Entity*> Game::findNearEntities(Entity &ent, float radius) {
 void Game::addController(Controller *cont) {
     Controllers.push_back(cont);
 }
+
+
 

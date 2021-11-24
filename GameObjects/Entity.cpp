@@ -69,7 +69,7 @@ bool Entity::checkAttack() {
         wantsAttack = false;
         return true;
     }
-    else return false;
+    return false;
 }
 
 void Entity::attack() {//TODO: add attackspeed check
@@ -82,10 +82,21 @@ float Entity::getAttackRadius() const {
 }
 
 void Entity::setAttackRadius(float attackRadius) {
-    Entity::attackRadius = attackRadius;
+    this->attackRadius = attackRadius;
 }
 
 bool Entity::attack(Entity &ent) {
     ent.setHealth(ent.getHealth() - damage);
+    if (ent.getHealth() <= 0){
+        ent.die();
+    }
     return true;
+}
+
+bool Entity::isDead() {
+    return dead;
+}
+
+void Entity::die() {
+    dead = true;
 }

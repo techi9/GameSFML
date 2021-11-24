@@ -23,7 +23,13 @@ public:
 
     void setPosition(float x, float y);
 
+    float getAttackRadius() const;
+
+    void setAttackRadius(float attackRadius);
+
     void move();
+
+    bool isDead();
 
 protected:
     float health = 1;
@@ -31,15 +37,12 @@ protected:
     float attackRadius = 0;
     float attackSpeed = 0;
     float maxSpeed = 1;
-public:
-    float getAttackRadius() const;
-
-    void setAttackRadius(float attackRadius);
 
 private:
     std::pair<float, float> speed;
     std::pair<float, float> position;
     bool wantsAttack = false;
+    bool dead = false;
 public:
     Entity() = default;
 
@@ -49,7 +52,7 @@ public:
 
     virtual bool attack(Entity& ent);
 
-    virtual void die() {};
+    virtual void die();
 
 };
 
