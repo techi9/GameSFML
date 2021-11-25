@@ -12,6 +12,7 @@ class EnemyController : public Controller{
 
     CollsionMap &field;
     Entity &ent;
+    bool goUp = false;
 
 public:
     EnemyController(CollsionMap &field, Entity &ent);

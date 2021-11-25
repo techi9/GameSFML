@@ -5,11 +5,14 @@
 #include "vector"
 #include "SFML/Graphics.hpp"
 #include "string"
+#include "typeinfo"
+
 class ObjectView : public sf::Drawable{
 private:
-    sf::Sprite PlayerSprite;
-    sf::Sprite TurretSprite;
-    sf::Sprite TrollSprite;
+    sf::Texture PlayerSprite;
+    sf::Texture TurretSprite;
+    sf::Texture TrollSprite;
+    sf::Texture GoblinTexture;
     std::vector<Entity*> *EntitiesList;
 public:
     ObjectView(std::vector<Entity*> *ListOfObjects, const std::string& PathToObjects);

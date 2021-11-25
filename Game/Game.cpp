@@ -43,6 +43,12 @@ Game::Game(int w, int h){
     addController(new EnemyController(*colMap, *troll));
     CreateEntity(troll);
 
+    Goblin* goblin = new Goblin(100, 100);
+    addController(new EnemyController(*colMap, *goblin));
+    CreateEntity(goblin);
+
+
+
     RunLoop();
 }
 
@@ -95,7 +101,6 @@ void Game::UpdateEntities() {
 
     for (auto *cnt : Controllers){
         cnt->control();
-
     }
 
 

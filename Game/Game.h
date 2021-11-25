@@ -12,6 +12,8 @@
 #include "../GameObjects/Enemies/EnemyController.h"
 #include "../GameObjects/Enemies/troll/Troll.h"
 #include "Controller.h"
+#include "../GameObjects/Item.h"
+#include "../GameObjects/Enemies/Goblin/Goblin.h"
 
 class Game {
 public:
@@ -19,7 +21,7 @@ public:
     ~Game();
     void CreateEntity(Entity *ent);
     void addController(Controller *cont);
-    void CreateObj(GameObj obj);
+    void CreateItem(Item item);
 
 private:
     int w, h;
@@ -27,6 +29,7 @@ private:
     FieldView *fview;
     CollsionMap *colMap;
     vector<Entity*> EntitiesList;
+    vector<Item> ItemList;
 
     vector<Controller*> Controllers;
     ObjectView *objectView;

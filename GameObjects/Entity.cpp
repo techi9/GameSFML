@@ -23,9 +23,7 @@ std::pair<float, float> Entity::getSpeed() {
     return speed;
 }
 
-std::pair<float, float> Entity::getPosition() {
-    return position;
-}
+
 
 void Entity::setSpeed(float x, float y) { //and max speed check
     float finalSpeedX = 0;
@@ -56,10 +54,7 @@ void Entity::setSpeed(float x, float y) { //and max speed check
 //    }
 }
 
-void Entity::setPosition(float x, float y) {
 
-    position = std::make_pair(x, y);
-}
 
 void Entity::move() {
     setPosition(position.first + speed.first, position.second + speed.second);
@@ -106,4 +101,12 @@ bool Entity::isDead() {
 
 void Entity::die() {
     dead = true;
+}
+
+float Entity::getAttackSpeed() const {
+    return attackSpeed;
+}
+
+void Entity::setAttackSpeed(float attackSpeed) {
+    Entity::attackSpeed = attackSpeed;
 }

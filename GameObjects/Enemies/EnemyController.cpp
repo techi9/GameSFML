@@ -9,7 +9,7 @@ EnemyController::EnemyController(CollsionMap &field, Entity &ent) : field(field)
 }
 
 void EnemyController::control() {
-    static bool goUp = false;
+
     if (field.at(ent.getPosition().first, ent.getPosition().second +32 + 2) && !goUp)
     {
 

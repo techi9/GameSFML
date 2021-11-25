@@ -17,11 +17,9 @@ public:
 
     std::pair<float, float> getSpeed();
 
-    std::pair<float, float> getPosition();
+
 
     void setSpeed(float x, float y);
-
-    void setPosition(float x, float y);
 
     float getAttackRadius() const;
 
@@ -36,11 +34,17 @@ protected:
     float damage = 0;
     float attackRadius = 0;
     float attackSpeed = 0;
+public:
+    float getAttackSpeed() const;
+
+    void setAttackSpeed(float attackSpeed);
+
+protected:
     float maxSpeed = 1;
 
 private:
     std::pair<float, float> speed;
-    std::pair<float, float> position;
+
     bool wantsAttack = false;
     bool dead = false;
 public:
