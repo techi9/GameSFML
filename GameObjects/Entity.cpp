@@ -1,6 +1,7 @@
 #include "Entity.h"
 #include "iostream"
 #include "algorithm"
+#include <time.h>
 
 int Entity::getHealth() const {
     return health;
@@ -72,9 +73,15 @@ bool Entity::checkAttack() {
     return false;
 }
 
-void Entity::attack() {//TODO: add attackspeed check
+void Entity::attack() {
+    unsigned int curTime = time(nullptr);
+    static unsigned int timeAttacked = 0;
 
-    wantsAttack = true;
+    if(curTime - timeAttacked > 1/attackSpeed){
+        wantsAttack = true;
+        timeAttacked = time(nullptr);
+    }
+
 }
 
 float Entity::getAttackRadius() const {
