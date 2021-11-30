@@ -14,14 +14,18 @@
 #include "Controller.h"
 #include "../GameObjects/Item.h"
 #include "../GameObjects/Enemies/Goblin/Goblin.h"
+#include "../GameObjects/Items/HealPotion/HealPotion.h"
+#include "../GameObjects/Items/Sword/Sword.h"
+#include "../GameObjects/Items/Hyperstone/Hyperstone.h"
 
 class Game {
 public:
     Game(int w, int h);
     ~Game();
     void CreateEntity(Entity *ent);
+
     void addController(Controller *cont);
-    void CreateItem(Item item);
+    void CreateItem(Item *item);
 
 private:
     int w, h;
@@ -29,7 +33,7 @@ private:
     FieldView *fview;
     CollsionMap *colMap;
     vector<Entity*> EntitiesList;
-    vector<Item> ItemList;
+    vector<Item*> ItemList;
 
     vector<Controller*> Controllers;
     sf::Font font;

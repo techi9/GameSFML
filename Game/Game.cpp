@@ -51,6 +51,8 @@ Game::Game(int w, int h){
     CreateEntity(goblin);
 
 
+    CreateItem(new Hyperstone(150, 150));
+
 
     RunLoop();
 }
@@ -195,6 +197,10 @@ vector<Entity*> Game::findNearEntities(Entity &ent, float radius) {
 
 void Game::addController(Controller *cont) {
     Controllers.push_back(cont);
+}
+
+void Game::CreateItem(Item *item) {
+    ItemList.push_back(item);
 }
 
 

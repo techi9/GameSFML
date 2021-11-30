@@ -4,6 +4,8 @@
 #include "Entity.h"
 
 class Item : public GameObj{
+public:
+    Item(float x, float y);
     virtual void interact(Entity &ent){};
 };
 

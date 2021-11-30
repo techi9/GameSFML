@@ -10,7 +10,8 @@
 
 
 class Sword : public Item {
-    void interact(Entity &ent);
+    using Item::Item;
+    void interact(Entity &ent) override;
 };
 
 
