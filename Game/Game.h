@@ -32,6 +32,7 @@ private:
     vector<Item> ItemList;
 
     vector<Controller*> Controllers;
+    sf::Font font;
     ObjectView *objectView;
     void UpdateEntities();
 

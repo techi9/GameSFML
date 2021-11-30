@@ -23,6 +23,9 @@ Game::Game(int w, int h){
     auto wind = new sf::RenderWindow(sf::VideoMode( w * TILE_SIZE,h * TILE_SIZE), "My window", sf::Style::Titlebar | sf::Style::Close);
     this->window = wind;
 
+
+
+
     srand (time(nullptr)-23);
     field = new Field(w, h);
     field->Init();
@@ -167,6 +170,7 @@ void Game::performAttacks() {
         if (ent->checkAttack()){
             entToAttack = findNearEntities(*ent, ent->getAttackRadius());
             for(auto &eToAttack : entToAttack){
+                cout<<"attacked\n";
                 ent->attack(*eToAttack);
             }
         }

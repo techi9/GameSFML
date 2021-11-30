@@ -17,8 +17,6 @@ public:
 
     std::pair<float, float> getSpeed();
 
-
-
     void setSpeed(float x, float y);
 
     float getAttackRadius() const;
@@ -26,8 +24,6 @@ public:
     void setAttackRadius(float attackRadius);
 
     void move();
-
-    bool isDead();
 
 protected:
     float health = 1;
@@ -44,7 +40,7 @@ protected:
 
 private:
     std::pair<float, float> speed;
-
+    unsigned int timeAttacked = 0;
     bool wantsAttack = false;
     bool dead = false;
 public:
@@ -56,7 +52,6 @@ public:
 
     virtual bool attack(Entity& ent);
 
-    virtual void die();
 
 };
 

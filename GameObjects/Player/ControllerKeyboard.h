@@ -9,6 +9,7 @@
 
 class ControllerKeyboard : public Controller{
 private:
+    bool attacked = false;
     Entity *player;
     int speedX = 0;
     int speedY = 0;

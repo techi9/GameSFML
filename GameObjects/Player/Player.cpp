@@ -2,10 +2,10 @@
 #include "iostream"
 Player::Player(int xOfEnt, int yofEnt){
     health = 100;
-    damage = 2;
+    damage = 10;
     maxSpeed = 0.3;
     attackRadius = 100;
-    attackSpeed = 1;
+    attackSpeed = 2;
     setPosition(xOfEnt, yofEnt);
 }
 

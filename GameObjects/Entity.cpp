@@ -70,7 +70,6 @@ bool Entity::checkAttack() {
 
 void Entity::attack() {
     unsigned int curTime = time(nullptr);
-    static unsigned int timeAttacked = 0;
 
     if(curTime - timeAttacked > 1/attackSpeed){
         wantsAttack = true;
@@ -93,14 +92,6 @@ bool Entity::attack(Entity &ent) {
         ent.die();
     }
     return true;
-}
-
-bool Entity::isDead() {
-    return dead;
-}
-
-void Entity::die() {
-    dead = true;
 }
 
 float Entity::getAttackSpeed() const {

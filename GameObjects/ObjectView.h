@@ -9,6 +9,7 @@
 
 class ObjectView : public sf::Drawable{
 private:
+    sf::Font font;
     sf::Texture PlayerSprite;
     sf::Texture TurretSprite;
     sf::Texture TrollSprite;

@@ -5,7 +5,9 @@
 
 
 ObjectView::ObjectView(std::vector<Entity*>* ListOfObjects, const std::string& PathToObjects) { //TODO: draw it somehow
-
+    if(!font.loadFromFile("../Roboto-Black.ttf")){
+        cerr<<"ERROR LOADING FONT\n";
+    }
     EntitiesList = ListOfObjects;
 
 
@@ -37,7 +39,17 @@ void ObjectView::draw(sf::RenderTarget &target, sf::RenderStates states) const {
         }
         else return;
 
+        sf::Text text;
+        text.setFont(font);
+        text.setString(std::to_string(ent->getHealth()));
+        text.setCharacterSize(24);
+        text.setFillColor(sf::Color::Black);
+        text.setPosition(ent->getPosition().first, ent->getPosition().second - 30);
+
+
         t.setPosition(ent->getPosition().first, ent->getPosition().second);
+
+        target.draw(text);
         target.draw(t);
 
     }

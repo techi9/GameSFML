@@ -7,8 +7,8 @@
 Troll::Troll(int x, int y) {
     health = 50;
     maxSpeed = 0.3;
-    damage = 1;
+    damage = 30;
     attackRadius = 30;
-    attackSpeed = 0.5;
+    attackSpeed = 1;
     setPosition(x, y);
 }

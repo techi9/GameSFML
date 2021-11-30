@@ -11,7 +11,7 @@ ControllerKeyboard::ControllerKeyboard(Entity *player) {
 
 void ControllerKeyboard::control() {
 
-    static bool attacked = false;
+    attacked = false;
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && !attacked){
         player->attack();
         attacked = true;

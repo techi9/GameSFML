@@ -5,6 +5,6 @@ Turret::Turret(int x, int y) {
     maxSpeed = 0;
     damage = 3;
     attackRadius = 100;
-    attackSpeed = 0.33;
+    attackSpeed = 5;
     setPosition(x, y);
 }
