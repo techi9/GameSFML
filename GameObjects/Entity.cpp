@@ -101,3 +101,15 @@ float Entity::getAttackSpeed() const {
 void Entity::setAttackSpeed(float attackSpeed) {
     Entity::attackSpeed = attackSpeed;
 }
+
+void Entity::pickUp() {
+    wantsPickUp = true;
+}
+
+bool Entity::isWantsPickUp() const {
+    return wantsPickUp;
+}
+
+void Entity::setWantsPickUp(bool wantsPickUp) {
+    wantsPickUp = wantsPickUp;
+}

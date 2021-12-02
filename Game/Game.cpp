@@ -16,6 +16,14 @@ bool isDeleted(Entity* ent){
     else return false;
 }
 
+bool isDeletedItem(Item* it){
+    if(it->ToDelete){
+        delete it;
+        return true;
+    }
+    else return false;
+}
+
 Game::Game(int w, int h){
     // create the window
     this->w = w;
@@ -31,7 +39,7 @@ Game::Game(int w, int h){
     field->Init();
     fview = new FieldView(field, "../Field/TileSet");
     fview->DrawField();
-    objectView = new ObjectView(&EntitiesList, "../Textures");
+    objectView = new ObjectView(&EntitiesList, &ItemList, "../Textures");
     colMap = new CollsionMap(*field, TILE_SIZE);
 
     Player* player = new Player(50, 50); //create palyer
@@ -52,6 +60,8 @@ Game::Game(int w, int h){
 
 
     CreateItem(new Hyperstone(150, 150));
+    CreateItem(new Sword(150, 100));
+    CreateItem(new HealPotion(100, 150));
 
 
     RunLoop();
@@ -168,32 +178,29 @@ void Game::UpdateEntities() {
 
 void Game::performAttacks() {
     vector<Entity*> entToAttack;
+    vector<Item*> itmToPickUp;
     for(auto &ent : EntitiesList){
         if (ent->checkAttack()){
-            entToAttack = findNearEntities(*ent, ent->getAttackRadius());
+            entToAttack = findNearObj(*ent, ent->getAttackRadius(), EntitiesList);
             for(auto &eToAttack : entToAttack){
                 cout<<"attacked\n";
                 ent->attack(*eToAttack);
             }
         }
+        if (ent->isWantsPickUp()){
+             itmToPickUp = findNearObj(*ent, 10, ItemList);
+            for(auto &IToPickUp : itmToPickUp){
+                cout<<"Picked Up\n";
+                IToPickUp->interact(*ent);
+                IToPickUp->ToDelete = true;
+            }
+        }
     }
+    ItemList.erase(std::remove_if(ItemList.begin(),  ItemList.end(), isDeletedItem), ItemList.end());
     EntitiesList.erase(std::remove_if(EntitiesList.begin(), EntitiesList.end(), isDeleted), EntitiesList.end());
 }
 
 
-vector<Entity*> Game::findNearEntities(Entity &ent, float radius) {
-    float xt = 0, yt = 0;
-    vector<Entity*> foundEntities;
-    for(auto &entity : EntitiesList){
-        //x,y  x1,y1  x1-x, y1-y sqr(x1,y1)<=radius
-        xt = entity->getPosition().first - ent.getPosition().first ;
-        yt = entity->getPosition().second - ent.getPosition().second;
-        if((xt*xt + yt*yt <= radius*radius) && (ent.getPosition().first != entity->getPosition().first && ent.getPosition().second != entity->getPosition().second)){
-            foundEntities.push_back(entity);
-        }
-    }
-    return foundEntities;
-}
 
 void Game::addController(Controller *cont) {
     Controllers.push_back(cont);

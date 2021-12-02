@@ -12,3 +12,4 @@ Troll::Troll(int x, int y) {
     attackSpeed = 1;
     setPosition(x, y);
 }
+

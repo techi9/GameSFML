@@ -42,6 +42,13 @@ private:
     std::pair<float, float> speed;
     unsigned int timeAttacked = 0;
     bool wantsAttack = false;
+    bool wantsPickUp = false;
+public:
+    bool isWantsPickUp() const;
+
+    void setWantsPickUp(bool wantsPickUp);
+
+private:
     bool dead = false;
 public:
     Entity() = default;
@@ -51,6 +58,8 @@ public:
     void attack();
 
     virtual bool attack(Entity& ent);
+
+    void pickUp();
 
 
 };

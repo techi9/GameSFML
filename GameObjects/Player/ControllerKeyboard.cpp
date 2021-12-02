@@ -20,6 +20,10 @@ void ControllerKeyboard::control() {
         attacked = false;
     }
 
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::E)){
+        player->pickUp();
+    }
+
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::A)){
         speedX = - 1;
     }

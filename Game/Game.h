@@ -40,11 +40,26 @@ private:
     ObjectView *objectView;
     void UpdateEntities();
 
+    template<typename T>
+    vector<T*> findNearObj(Entity &ent, float radius, vector<T*> &EntitiesList) {
+        float xt = 0, yt = 0;
+        vector<T*> foundEntities;
+        for(auto &entity : EntitiesList){
+            //x,y  x1,y1  x1-x, y1-y sqr(x1,y1)<=radius
+            xt = entity->getPosition().first - ent.getPosition().first ;
+            yt = entity->getPosition().second - ent.getPosition().second;
+            if((xt*xt + yt*yt <= radius*radius) && (ent.getPosition().first != entity->getPosition().first && ent.getPosition().second != entity->getPosition().second)){
+                foundEntities.push_back(entity);
+            }
+        }
+        return foundEntities;
+    }
+
+
 
     void RunLoop();
     sf::RenderWindow* window;
     void performAttacks();
 
-    vector<Entity*> findNearEntities(Entity &ent, float radius);
 };
 
