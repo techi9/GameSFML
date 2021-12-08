@@ -12,7 +12,7 @@
 #include "../GameObjects/Enemies/EnemyController.h"
 #include "../GameObjects/Enemies/troll/Troll.h"
 #include "Controller.h"
-#include "../GameObjects/Item.h"
+#include "../GameObjects/Items/Item.h"
 #include "../GameObjects/Enemies/Goblin/Goblin.h"
 #include "../GameObjects/Items/HealPotion/HealPotion.h"
 #include "../GameObjects/Items/Sword/Sword.h"

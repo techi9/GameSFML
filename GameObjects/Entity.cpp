@@ -106,8 +106,13 @@ void Entity::pickUp() {
     wantsPickUp = true;
 }
 
-bool Entity::isWantsPickUp() const {
-    return wantsPickUp;
+bool Entity::isWantsPickUp(){
+    if (wantsPickUp)
+    {
+        wantsPickUp = false;
+        return true;
+    }
+    else return false;
 }
 
 void Entity::setWantsPickUp(bool wantsPickUp) {

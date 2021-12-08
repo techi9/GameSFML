@@ -2,7 +2,7 @@
 #ifndef GAMESFML_HYPERSTONE_H
 #define GAMESFML_HYPERSTONE_H
 
-#include "../../Item.h"
+#include "../Item.h"
 #include "../../Entity.h"
 
 

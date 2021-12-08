@@ -44,7 +44,7 @@ private:
     bool wantsAttack = false;
     bool wantsPickUp = false;
 public:
-    bool isWantsPickUp() const;
+    bool isWantsPickUp();
 
     void setWantsPickUp(bool wantsPickUp);
 

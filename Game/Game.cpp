@@ -188,7 +188,7 @@ void Game::performAttacks() {
             }
         }
         if (ent->isWantsPickUp()){
-             itmToPickUp = findNearObj(*ent, 10, ItemList);
+             itmToPickUp = findNearObj(*ent, 30, ItemList);
             for(auto &IToPickUp : itmToPickUp){
                 cout<<"Picked Up\n";
                 IToPickUp->interact(*ent);

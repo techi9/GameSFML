@@ -5,7 +5,7 @@
 #ifndef GAMESFML_SWORD_H
 #define GAMESFML_SWORD_H
 
-#include "../../Item.h"
+#include "../Item.h"
 #include "../../Entity.h"
 
 

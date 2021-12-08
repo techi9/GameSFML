@@ -2,7 +2,7 @@
 #define GAMESFML_OBJECTVIEW_H
 
 #include "Entity.h"
-#include "Item.h"
+#include "Items/Item.h"
 #include "vector"
 #include "SFML/Graphics.hpp"
 #include "string"
